@@ -21,19 +21,20 @@ int is_palindrome(listint_t **head)
 		cur = cur->next;
 		size++;
 	}
-	if (size % 2 != 0)
-		return (0);
+
 	size /= 2;
 	cur = *head;
 	list = malloc(sizeof(int) * size);
 
-	while (jumper != NULL)
+	while (jumper != NULL && jumper->next != NULL)
 	{
 		list[size - 1] = cur->n;
 		cur = cur->next;
 		jumper = jumper->next->next;
 		size--;
 	}
+	if (jumper != NULL)
+		cur = cur->next;
 	while (cur != NULL)
 	{
 		if (list[size] != cur->n)
