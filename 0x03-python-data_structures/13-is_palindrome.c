@@ -23,8 +23,9 @@ int is_palindrome(listint_t **head)
 	}
 	if (size % 2 != 0)
 		return (0);
+	size /= 2;
 	cur = *head;
-	list = malloc(sizeof(int) * (size / 2));
+	list = malloc(sizeof(int) * size);
 
 	while (jumper != NULL)
 	{
@@ -33,7 +34,6 @@ int is_palindrome(listint_t **head)
 		jumper = jumper->next->next;
 		size--;
 	}
-
 	while (cur != NULL)
 	{
 		if (list[size] != cur->n)
