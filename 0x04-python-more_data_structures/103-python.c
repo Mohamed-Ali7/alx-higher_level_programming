@@ -9,7 +9,6 @@
 
 void print_python_list(PyObject *p)
 {
-	PyListObject *list = (PyListObject *)p;
 	Py_ssize_t size = PyList_Size(p);
 	Py_ssize_t i;
 	PyObject *item;
