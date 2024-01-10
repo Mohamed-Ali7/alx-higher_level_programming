@@ -1,6 +1,7 @@
 #include <Python.h>
 #include <stdio.h>
 
+void print_python_bytes(PyObject *p);
 /**
  * print_python_list - Prints some basic info about Python lists.
  * @p: Is the list to print its info
@@ -19,9 +20,9 @@ void print_python_list(PyObject *p)
 	for (i = 0; i < size; i++)
 	{
 		item =  PyList_GET_ITEM(p, i);
-		printf("Element %ld: %s\n", i, item->ob_type->tp_name);
 		if (PyBytes_Check(item))
-			print_python_bytes(item)
+				print_python_bytes(item);
+		printf("Element %ld: %s\n", i, item->ob_type->tp_name);
 	}
 }
 
