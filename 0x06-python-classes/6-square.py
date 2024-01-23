@@ -59,6 +59,8 @@ class Square:
         return self.__size ** 2
 
     def my_print(self):
+        """This method prints the square (n) times where n is the size"""
+
         if self.__size == 0:
             print()
         else:
