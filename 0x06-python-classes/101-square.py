@@ -74,7 +74,7 @@ class Square:
         """This method return the square (n) times where n is the size"""
         result = ""
         if self.__size == 0:
-            return "\n"
+            return ""
         else:
             result += "\n" * self.__position[1]
             for i in range(self.__size):
