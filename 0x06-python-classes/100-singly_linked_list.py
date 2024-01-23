@@ -1,4 +1,4 @@
-#!\usr\bin\python3
+#!/usr/bin/python3
 
 """This module contains a class which is a Node of a singly linnked list"""
 
