@@ -24,6 +24,9 @@ class MagicClass:
         Args:
             radius (int or float): Is the initializing value
             of the radius attribute
+
+        Raises:
+            TypeError: if radius is not a number (int or float) .
         """
 
         self.__radius = 0
