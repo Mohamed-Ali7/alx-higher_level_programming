@@ -24,9 +24,6 @@ class MagicClass:
         Args:
             radius (int or float): Is the initializing value
             of the radius attribute
-
-        Raises:
-            TypeError: if radius is not a number (int or float) .
         """
 
         self.__radius = 0
@@ -38,7 +35,7 @@ class MagicClass:
 
     def area(self):
         """This method is to return the area of the circle"""
-        return self.__radius ** 2 * math.pi
+        return math.pi * self.__radius ** 2
 
     def circumference(self):
         """This method is to return the circumference of the circle"""
