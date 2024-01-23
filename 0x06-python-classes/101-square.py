@@ -59,8 +59,19 @@ class Square:
         """This method is to return the area of the square"""
         return self.__size ** 2
 
-    def __str__(self):
+    def my_print(self):
         """This method prints the square (n) times where n is the size"""
+
+        if self.__size == 0:
+            print()
+        else:
+            print("\n" * self.__position[1], end="")
+            for i in range(self.__size):
+                print(" " * self.__position[0], end="")
+                print("#" * self.__size)
+
+    def __str__(self):
+        """This method return the square (n) times where n is the size"""
         result = ""
         if self.__size == 0:
             return "\n"
