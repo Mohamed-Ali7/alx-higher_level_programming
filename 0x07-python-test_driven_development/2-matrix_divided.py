@@ -51,7 +51,7 @@ def matrix_divided(matrix, div):
         if len(new_matrix[i]) == 0:
             raise TypeError(element_err)
 
-        if (len(new_matrix[0]) != len(new_matrix[i])):
+        if len(new_matrix[0]) != len(new_matrix[i]):
             raise TypeError("Each row of the matrix must have the same size")
         i += 1
 
