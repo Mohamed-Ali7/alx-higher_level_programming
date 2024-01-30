@@ -10,5 +10,5 @@ def copy_list(l):
     Args:
         l (list): Is the list to return a copy of it
     """
-
-    return l[:]
+    l_copy = l[:]
+    return l_copy
