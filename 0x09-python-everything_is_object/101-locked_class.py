@@ -9,6 +9,8 @@ class LockedClass:
     """
 
     def __setattr__(self, name, value):
+        """Set instance attribures dynamically"""
+
         error = f"'{__class__.__name__}' object has no attribute '{name}'"
         if name != "first_name":
             raise AttributeError(error)
