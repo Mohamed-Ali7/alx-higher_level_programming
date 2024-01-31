@@ -45,6 +45,10 @@ TypeError: a must be an integer
 Traceback (most recent call last):
 ValueError: invalid literal for int() with base 10: 'ten'
 
->>> add_integer(0, float("ten"))
+>>> add_integer(float('inf'), 2)
 Traceback (most recent call last):
-ValueError: could not convert string to float: 'ten'
+OverflowError: cannot convert float infinity to integer
+
+>>> add_integer(3, float('nan'))
+Traceback (most recent call last):
+ValueError: cannot convert float NaN to integer
