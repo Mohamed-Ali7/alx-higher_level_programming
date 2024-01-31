@@ -8,13 +8,10 @@ class LockedClass:
     attributes, except if the new instance attribute is called first_name.
     """
 
-    def __self__(self):
-        pass
-
     def __setattr__(self, name, value):
         """Set instance attribures dynamically"""
 
         error = f"'{__class__.__name__}' object has no attribute '{name}'"
-        if name != "first_name":
+        if type(name) is not str or name != "first_name":
             raise AttributeError(error)
         self.__dict__[name] = value
