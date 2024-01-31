@@ -8,6 +8,9 @@ class LockedClass:
     attributes, except if the new instance attribute is called first_name.
     """
 
+    def __self__(self):
+        pass
+
     def __setattr__(self, name, value):
         """Set instance attribures dynamically"""
 
