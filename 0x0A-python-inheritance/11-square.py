@@ -1,0 +1,24 @@
+#!/usr/bin/python3
+
+"""This module contains Square class"""
+
+Rectangle = __import__('9-rectangle').Rectangle
+
+
+class Square(Rectangle):
+    """This class represents a square"""
+
+    def __init__(self, size):
+        """
+        The constructor of the class which intitalizes instances
+        Args:
+            size (int): Is the size of the sqquare
+        """
+        self.integer_validator("size", size)
+        super().__init__(size, size)
+        self.__size = size
+
+    def __str__(self):
+        """Represents the object as a string"""
+
+        return "[Square] {}/{}".format(self.__size, self.__size)
