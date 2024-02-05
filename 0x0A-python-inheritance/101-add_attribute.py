@@ -14,7 +14,7 @@ def add_attribute(obj, att_name, att_value):
         TypeError: if the object cannot have new attribute
     """
 
-    if obj.__class__.__module__ == 'builtins':
+    if "__dict__" not in dir(obj):
         raise TypeError("can't add new attribute")
 
     setattr(obj, att_name, att_value)
