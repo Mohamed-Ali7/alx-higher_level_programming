@@ -15,3 +15,7 @@
 >>> print_sorted([1, "2", 3, 4, 5])
 Traceback (most recent call last):
 TypeError: '<' not supported between instances of 'str' and 'int'
+
+>>> print_sorted(None)
+Traceback (most recent call last):
+TypeError: 'NoneType' object is not iterable
