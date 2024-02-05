@@ -15,5 +15,3 @@ class Square(Rectangle):
             size (int): Is the size of the sqquare
         """
         super().__init__(size, size)
-
-        self.__size = size
