@@ -23,7 +23,7 @@ class Student:
         """Retrieves a dictionary representation of a Student instance"""
 
         my_dict = {}
-        if attrs:
+        if attrs is not None:
             for attribute in attrs:
                 if type(attribute) is not str:
                     return self.__dict__
@@ -31,4 +31,5 @@ class Student:
                 if attribute in self.__dict__:
                     my_dict[attribute] = self.__dict__[attribute]
             return my_dict
+
         return self.__dict__
