@@ -34,3 +34,4 @@ except KeyboardInterrupt as ex:
     print("File size: {:d}".format(total_size))
     for key, value in sorted(printable_status.items()):
         print("{}: {:d}".format(key, value))
+    raise
