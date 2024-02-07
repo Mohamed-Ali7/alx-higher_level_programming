@@ -21,7 +21,7 @@ def append_after(filename="", search_string="", new_string=""):
         words = file_lines[i].split()
 
         for word in words:
-            if search_string == word[:6]:
+            if search_string == word[:len(new_string)]:
                 file_lines[i] += f"{new_string}"
 
     with open(filename, "w", encoding="utf-8") as file:
