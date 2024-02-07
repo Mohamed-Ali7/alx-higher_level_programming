@@ -19,11 +19,13 @@ try:
         if status_code in status:
             printable_status[status_code] = status[status_code]
             status[status_code] += 1
-        if i != 0 and i % 10 == 0:
+        if i == 10:
             print(f"File size: {total_size}")
+            i = 1
             for key in sorted(printable_status):
                 print(f"{key}: {printable_status[key]}")
-        i += 1
+        else:
+            i += 1
 except KeyboardInterrupt as ex:
     print(f"File size: {total_size}")
     for key in sorted(printable_status):
