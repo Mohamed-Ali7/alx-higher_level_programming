@@ -14,8 +14,14 @@ printable_status = {}
 try:
     for line in sys.stdin:
         words = line.split()
-        status_code = words[-2]
-        total_size += int(words[-1])
+        try:
+            status_code = words[-2]
+        except (IndexError, ValueError):
+            pass
+        try:
+            total_size += int(words[-1])
+        except (IndexError, ValueError):
+            pass
         if status_code in status:
             printable_status[status_code] = status[status_code]
             status[status_code] += 1
@@ -23,7 +29,6 @@ try:
             print("File size: {:d}".format(total_size))
             for key, value in sorted(printable_status.items()):
                 print("{}: {:d}".format(key, value))
-            printable_status.clear()
             i = 1
         else:
             i += 1
