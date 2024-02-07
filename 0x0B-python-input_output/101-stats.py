@@ -20,17 +20,17 @@ try:
             printable_status[status_code] = status[status_code]
             status[status_code] += 1
         if i == 10:
-            print(f"File size: {total_size}")
-            i = 1
+            print("File size: {:d}".format(total_size))
             for key, value in sorted(printable_status.items()):
-                print(f"{key}: {value}")
+                print("{}: {:d}".format(key, value))
+            i = 1
         else:
             i += 1
 
-    print(f"File size: {total_size}")
+    print("File size: {:d}".format(total_size))
     for key, value in sorted(printable_status.items()):
-        print(f"{key}: {value}")
+        print("{}: {:d}".format(key, value))
 except KeyboardInterrupt as ex:
-    print(f"File size: {total_size}")
+    print("File size: {:d}".format(total_size))
     for key, value in sorted(printable_status.items()):
-        print(f"{key}: {value}")
+        print("{}: {:d}".format(key, value))
