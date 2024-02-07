@@ -11,7 +11,6 @@ status = {"200": 1, "301": 1, "400": 1, "401": 1,
           "403": 1, "404": 1, "405": 1, "500": 1}
 printable_status = {}
 try:
-
     while True:
         for r in range(10):
             line = sys.stdin.readline()
@@ -25,7 +24,7 @@ try:
         print(f"File size: {total_size}")
         for key in sorted(printable_status):
             print(f"{key}: {printable_status[key]}")
-except KeyboardInterrupt:
+except KeyboardInterrupt as ex:
     print(f"File size: {total_size}")
     for key in sorted(printable_status):
         print(f"{key}: {printable_status[key]}")
