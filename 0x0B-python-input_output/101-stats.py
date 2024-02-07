@@ -14,7 +14,7 @@ printable_status = {}
 try:
     for line in sys.stdin:
         words = line.split()
-        if len(words) >= 2:
+        if len(words) == 9:
             status_code = words[-2]
             total_size += int(words[-1])
             if status_code in status:
@@ -28,9 +28,6 @@ try:
         else:
             i += 1
 
-    print("File size: {:d}".format(total_size))
-    for key, value in sorted(printable_status.items()):
-        print("{}: {:d}".format(key, value))
 except KeyboardInterrupt as ex:
     print("File size: {:d}".format(total_size))
     for key, value in sorted(printable_status.items()):
