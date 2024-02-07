@@ -22,11 +22,15 @@ try:
         if i == 10:
             print(f"File size: {total_size}")
             i = 1
-            for key in sorted(printable_status):
-                print(f"{key}: {printable_status[key]}")
+            for key, value in sorted(printable_status.items()):
+                print(f"{key}: {value}")
         else:
             i += 1
+
+    print(f"File size: {total_size}")
+    for key, value in sorted(printable_status.items()):
+        print(f"{key}: {value}")
 except KeyboardInterrupt as ex:
     print(f"File size: {total_size}")
-    for key in sorted(printable_status):
-        print(f"{key}: {printable_status[key]}")
+    for key, value in sorted(printable_status.items()):
+        print(f"{key}: {value}")
