@@ -17,12 +17,18 @@ def append_after(filename="", search_string="", new_string=""):
     with open(filename, "r", encoding="utf-8") as file:
         file_lines = file.readlines()
 
-    for i in range(len(file_lines)):
-        words = file_lines[i].split()
+    new_lines = []
 
+    r = 0
+    for line in file_lines:
+        words = line.split()
+
+        new_lines.append(line)
+        r += 1
         for word in words:
             if search_string == word[:len(search_string)]:
-                file_lines[i] += f"{new_string}"
+                new_lines.append(new_string)
+                r += 1
 
     with open(filename, "w", encoding="utf-8") as file:
-        file_lines = file.writelines(file_lines)
+        file_lines = file.writelines(new_lines)
