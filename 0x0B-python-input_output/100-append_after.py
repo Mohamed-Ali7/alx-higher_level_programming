@@ -21,14 +21,11 @@ def append_after(filename="", search_string="", new_string=""):
 
     r = 0
     for line in file_lines:
-        words = line.split()
-
         new_lines.append(line)
         r += 1
-        for word in words:
-            if search_string == word[:len(search_string)]:
-                new_lines.append(new_string)
-                r += 1
+        if line.find(search_string) >= 0:
+            new_lines.append(new_string)
+            r += 1
 
     with open(filename, "w", encoding="utf-8") as file:
         file_lines = file.writelines(new_lines)
