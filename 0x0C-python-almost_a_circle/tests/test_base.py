@@ -26,3 +26,8 @@ class TestBase(unittest.TestCase):
 
         b4 = Base()
         self.assertEqual(b4.id, 4)
+
+        b5 = Base()
+        self.assertEqual(b5.id, 5)
+        b5.id = 15
+        self.assertEqual(b5.id, 15)
