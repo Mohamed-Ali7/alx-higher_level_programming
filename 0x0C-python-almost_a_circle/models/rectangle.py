@@ -9,9 +9,40 @@ class Rectangle(Base):
     """A subclass of the Bass class that represent a rectangle"""
 
     def __init__(self, width, height, x=0, y=0, id=None):
-        """Is the class constructor"""
+        """
+        Is the class constructor
+        Args:
+            width (int): The initiation value of the width of the rectangle
+            height (int): The initiation value of the height of the rectangle
+            x (int): The initiation value of the x of the rectangle
+            y (int): The initiation value of the y of the rectangle
+            id (int): The initiation value of the id of the rectangle
+
+        Raises:
+        TypeError: If width, height, x, or y is not integer
+        ValueError: If width or height less that or equal to 0 or
+        x or y less than 0
+        """
 
         super().__init__(id)
+
+        if type(width) is not int:
+            raise TypeError("width must be an integer")
+        if type(height) is not int:
+            raise TypeError("height must be an integer")
+        if type(x) is not int:
+            raise TypeError("x must be an integer")
+        if type(y) is not int:
+            raise TypeError("y must be an integer")
+
+        if width <= 0:
+            raise ValueError("width must be > 0")
+        if height <= 0:
+            raise ValueError("height must be > 0")
+        if x < 0:
+            raise ValueError("x must be >= 0")
+        if y < 0:
+            raise ValueError("y must be >= 0")
 
         self.__width = width
         self.__height = height
@@ -24,12 +55,21 @@ class Rectangle(Base):
         return self.__width
 
     @width.setter
-    def wdith(self, value):
+    def width(self, value):
         """
         Setter for the instance attribute (width)
         Args:
             value: Is the value that will be asigned to width attribute
+
+        Raises:
+        TypeError: If (value) ss not an integer
+        ValueError: If (value) is less than or equal to 0
         """
+
+        if type(value) is not int:
+            raise TypeError("width must be an integer")
+        if value <= 0:
+            raise ValueError("width must be > 0")
 
         self.__width = value
 
@@ -44,8 +84,16 @@ class Rectangle(Base):
         Setter for the instance attribute (height)
         Args:
             value: Is the value that will be asigned to height attribute
+
+        Raises:
+        TypeError: If (value) ss not an integer
+        ValueError: If (value) is less than or equal to 0
         """
 
+        if type(value) is not int:
+            raise TypeError("height must be an integer")
+        if value <= 0:
+            raise ValueError("height must be > 0")
         self.__height = value
 
     @property
@@ -59,8 +107,16 @@ class Rectangle(Base):
         Setter for the instance attribute (x)
         Args:
             value: Is the value that will be asigned to x attribute
+
+        Raises:
+        TypeError: If (value) ss not an integer
+        ValueError: If (value) is less than 0
         """
 
+        if type(value) is not int:
+            raise TypeError("x must be an integer")
+        if value < 0:
+            raise ValueError("x must be >= 0")
         self.__x = value
 
     @property
@@ -74,6 +130,14 @@ class Rectangle(Base):
         Setter for the instance attribute (y)
         Args:
             value: Is the value that will be asigned to y attribute
+
+        Raises:
+        TypeError: If (value) ss not an integer
+        ValueError: If (value) is less than 0
         """
 
+        if type(value) is not int:
+            raise TypeError("y must be an integer")
+        if value < 0:
+            raise ValueError("y must be >= 0")
         self.__y = value
