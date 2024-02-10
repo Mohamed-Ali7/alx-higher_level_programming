@@ -223,6 +223,7 @@ class TestRectangle(unittest.TestCase):
         r1 = Rectangle(10, 2, 1, 9)
         r1_dictionary = {'id': 1, 'width': 10, 'height': 2, 'x': 1, 'y': 9}
 
+        self.assertEqual(type(r1_dictionary), dict)
         self.assertEqual(r1.to_dictionary(), r1_dictionary)
 
         r2 = Rectangle(1, 1)
