@@ -130,3 +130,48 @@ class TestRectangle(unittest.TestCase):
 
         r = Rectangle(height=3, width=7, id=15, y=3, x=4)
         self.assertEqual(r.__str__(), "[Rectangle] (15) 4/3 - 7/3")
+
+    def test_update(self):
+        """Tests Update function that updates the attributes of an instance"""
+
+        r = Rectangle(10, 10, 10, 10)
+        self.assertEqual(r.id, 1)
+        self.assertEqual(r.width, 10)
+        self.assertEqual(r.height, 10)
+        self.assertEqual(r.x, 10)
+        self.assertEqual(r.y, 10)
+
+        r.update(89)
+        self.assertEqual(r.id, 89)
+        self.assertEqual(r.width, 10)
+        self.assertEqual(r.height, 10)
+        self.assertEqual(r.x, 10)
+        self.assertEqual(r.y, 10)
+
+        r.update(89, 2)
+        self.assertEqual(r.id, 89)
+        self.assertEqual(r.width, 2)
+        self.assertEqual(r.height, 10)
+        self.assertEqual(r.x, 10)
+        self.assertEqual(r.y, 10)
+
+        r.update(89, 2, 3)
+        self.assertEqual(r.id, 89)
+        self.assertEqual(r.width, 2)
+        self.assertEqual(r.height, 3)
+        self.assertEqual(r.x, 10)
+        self.assertEqual(r.y, 10)
+
+        r.update(89, 2, 3, 4)
+        self.assertEqual(r.id, 89)
+        self.assertEqual(r.width, 2)
+        self.assertEqual(r.height, 3)
+        self.assertEqual(r.x, 4)
+        self.assertEqual(r.y, 10)
+
+        r.update(89, 2, 3, 4, 5)
+        self.assertEqual(r.id, 89)
+        self.assertEqual(r.width, 2)
+        self.assertEqual(r.height, 3)
+        self.assertEqual(r.x, 4)
+        self.assertEqual(r.y, 5)
