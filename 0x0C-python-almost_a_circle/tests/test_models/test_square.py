@@ -120,3 +120,43 @@ class TestSquare(unittest.TestCase):
 
         sq = Square(size=7, id=15, y=3, x=4)
         self.assertEqual(sq.__str__(), "[Square] (15) 4/3 - 7")
+
+    def test_size(self):
+        """Tests the size of the square"""
+
+        sq = Square(10)
+
+        self.assertEqual(sq.width, 10)
+        self.assertEqual(sq.height, 10)
+        self.assertEqual(sq.size, 10)
+
+        sq.width = 7
+        self.assertEqual(sq.width, 7)
+        self.assertEqual(sq.height, 10)
+        self.assertEqual(sq.size, 7)
+
+        sq.height = 9
+        self.assertEqual(sq.width, 7)
+        self.assertEqual(sq.height, 9)
+        self.assertEqual(sq.size, 7)
+
+        sq.size = 16
+        self.assertEqual(sq.width, 16)
+        self.assertEqual(sq.height, 16)
+        self.assertEqual(sq.size, 16)
+
+        with self.assertRaises(ValueError):
+            sq.width = 0
+        with self.assertRaises(ValueError):
+            sq.height = 0
+        with self.assertRaises(ValueError):
+            sq.size = 0
+
+        with self.assertRaises(TypeError):
+            sq.width = "5"
+        with self.assertRaises(TypeError):
+            sq.height = "5"
+        with self.assertRaises(TypeError):
+            sq.size = "5"
+        with self.assertRaises(TypeError):
+            sq.size = None
