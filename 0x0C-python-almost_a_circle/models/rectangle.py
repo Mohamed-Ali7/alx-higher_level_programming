@@ -28,19 +28,21 @@ class Rectangle(Base):
 
         if type(width) is not int:
             raise TypeError("width must be an integer")
-        if type(height) is not int:
-            raise TypeError("height must be an integer")
-        if type(x) is not int:
-            raise TypeError("x must be an integer")
-        if type(y) is not int:
-            raise TypeError("y must be an integer")
-
         if width <= 0:
             raise ValueError("width must be > 0")
+
+        if type(height) is not int:
+            raise TypeError("height must be an integer")
         if height <= 0:
             raise ValueError("height must be > 0")
+
+        if type(x) is not int:
+            raise TypeError("x must be an integer")
         if x < 0:
             raise ValueError("x must be >= 0")
+
+        if type(y) is not int:
+            raise TypeError("y must be an integer")
         if y < 0:
             raise ValueError("y must be >= 0")
 
@@ -187,3 +189,12 @@ class Rectangle(Base):
                 self.x = kwargs["x"]
             if "y" in kwargs:
                 self.y = kwargs["y"]
+
+    def to_dictionary(self):
+        """Rreturns the dictionary representation of a Rectangle:"""
+
+        return {"id": self.id,
+                "width": self.width,
+                "height": self.height,
+                "x": self.x,
+                "y": self.y}
