@@ -160,3 +160,96 @@ class TestSquare(unittest.TestCase):
             sq.size = "5"
         with self.assertRaises(TypeError):
             sq.size = None
+
+    def test_update(self):
+        """Tests Update function that updates the attributes of an instance"""
+
+        sq = Square(10, 10, 10)
+        self.assertEqual(sq.id, 1)
+        self.assertEqual(sq.size, 10)
+        self.assertEqual(sq.width, 10)
+        self.assertEqual(sq.height, 10)
+        self.assertEqual(sq.x, 10)
+        self.assertEqual(sq.y, 10)
+
+        sq.update(1)
+        self.assertEqual(sq.id, 1)
+        self.assertEqual(sq.width, 10)
+        self.assertEqual(sq.height, 10)
+        self.assertEqual(sq.size, 10)
+        self.assertEqual(sq.x, 10)
+        self.assertEqual(sq.y, 10)
+
+        sq.update(89, 2)
+        self.assertEqual(sq.id, 89)
+        self.assertEqual(sq.width, 2)
+        self.assertEqual(sq.height, 2)
+        self.assertEqual(sq.size, 2)
+        self.assertEqual(sq.x, 10)
+        self.assertEqual(sq.y, 10)
+
+        sq.update(8, 2, 3, id=7)
+        self.assertEqual(sq.id, 8)
+        self.assertEqual(sq.width, 2)
+        self.assertEqual(sq.height, 2)
+        self.assertEqual(sq.size, 2)
+        self.assertEqual(sq.x, 3)
+        self.assertEqual(sq.y, 10)
+
+        sq.update(89, 7, 3, 4)
+        self.assertEqual(sq.id, 89)
+        self.assertEqual(sq.width, 7)
+        self.assertEqual(sq.height, 7)
+        self.assertEqual(sq.size, 7)
+        self.assertEqual(sq.x, 3)
+        self.assertEqual(sq.y, 4)
+
+        sq.update(15, 2, 4, 5)
+        self.assertEqual(sq.id, 15)
+        self.assertEqual(sq.width, 2)
+        self.assertEqual(sq.height, 2)
+        self.assertEqual(sq.size, 2)
+        self.assertEqual(sq.x, 4)
+        self.assertEqual(sq.y, 5)
+
+        sq.update(89, 2, 4, 5, id=15, x=20)
+        self.assertEqual(sq.id, 89)
+        self.assertEqual(sq.width, 2)
+        self.assertEqual(sq.height, 2)
+        self.assertEqual(sq.size, 2)
+        self.assertEqual(sq.x, 4)
+        self.assertEqual(sq.y, 5)
+
+        sq.update(size=13, y=17, id=15, x=20)
+        self.assertEqual(sq.id, 15)
+        self.assertEqual(sq.width, 13)
+        self.assertEqual(sq.height, 13)
+        self.assertEqual(sq.size, 13)
+        self.assertEqual(sq.x, 20)
+        self.assertEqual(sq.y, 17)
+
+        sq.update(id=11)
+        self.assertEqual(sq.id, 11)
+
+    def test_update_exception(self):
+        """Tests exceptions thrown by the update function"""
+
+        sq = Square(10, 10, 10, 10)
+
+        with self.assertRaises(TypeError):
+            sq.update(x="11")
+
+        with self.assertRaises(TypeError):
+            sq.update(size="h")
+
+        with self.assertRaises(TypeError):
+            sq.update(2, 1, 5, "1")
+
+        with self.assertRaises(ValueError):
+            sq.update(size=10, x=-1, y=1)
+
+        with self.assertRaises(ValueError):
+            sq.update(size=0, x=1, y=1)
+
+        with self.assertRaises(ValueError):
+            sq.update(size=-5, x=1, y=1)
