@@ -253,3 +253,31 @@ class TestSquare(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             sq.update(size=-5, x=1, y=1)
+
+    def test_to_dictionary(self):
+        """Tests to_dictionary function"""
+
+        sq1 = Square(10, 2, 1)
+        sq1_dictionary = {'id': 1, 'x': 2, 'size': 10, 'y': 1}
+        self.assertEqual(sq1.to_dictionary(), sq1_dictionary)
+
+        sq2 = Square(1, 1)
+        sq2_dictionary = {'size': 1, 'id': 2, 'x': 1, 'y': 0}
+        self.assertEqual(sq2.to_dictionary(), sq2_dictionary)
+
+        sq3 = Square(1, 1)
+        sq3.update(**sq2_dictionary)
+        self.assertEqual(sq3.to_dictionary(), sq2_dictionary)
+
+        with self.assertRaises(TypeError):
+            sq4 = Square()
+        with self.assertRaises(TypeError):
+            sq5 = Square("2", 4)
+        with self.assertRaises(TypeError):
+            sq6 = Square(2, 4, "5")
+        with self.assertRaises(ValueError):
+            sq7 = Square(-2, "4")
+        with self.assertRaises(ValueError):
+            sq8 = Square(2, 0, -1)
+        with self.assertRaises(TypeError):
+            sq9 = Square("1", -1)
