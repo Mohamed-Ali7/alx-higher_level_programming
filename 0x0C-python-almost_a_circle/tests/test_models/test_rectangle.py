@@ -4,11 +4,16 @@
 
 import unittest
 
-from models.rectangle import Rectangle
+from models.rectangle import (Rectangle, Base)
 
 
 class TestRectangle(unittest.TestCase):
     """This class is for testing Rectangle class attributes and functions"""
+
+    def setUp(self) -> None:
+        """Setup data before each test method"""
+
+        Base._Base__nb_objects = 0
 
     def test_width(self):
         """Tests the width of the rectangle"""
@@ -113,3 +118,15 @@ class TestRectangle(unittest.TestCase):
         r.width = 7
         r.height = 8
         self.assertEqual(r.area(), 56)
+
+    def test_str(self):
+        """Tests the __str__ method"""
+
+        r = Rectangle(4, 6, 2, 1, 12)
+        self.assertEqual(r.__str__(), "[Rectangle] (12) 2/1 - 4/6")
+
+        r = Rectangle(5, 5, 1)
+        self.assertEqual(r.__str__(), "[Rectangle] (1) 1/0 - 5/5")
+
+        r = Rectangle(height=3, width=7, id=15, y=3, x=4)
+        self.assertEqual(r.__str__(), "[Rectangle] (15) 4/3 - 7/3")
