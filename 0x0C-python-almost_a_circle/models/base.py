@@ -2,6 +2,8 @@
 
 """This module contains Base class"""
 
+import json
+
 
 class Base:
     """
@@ -21,3 +23,16 @@ class Base:
         else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
+
+    def to_json_string(list_dictionaries):
+        """
+        Returns the JSON string representation of list of dictionaries
+        Args:
+            list_dictionaries (list of dicts): The list of dictionaries
+            to return it's own JSON string representation
+        """
+
+        if not list_dictionaries:
+            return "[]"
+
+        return json.dumps(list_dictionaries)

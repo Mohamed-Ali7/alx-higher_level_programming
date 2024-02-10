@@ -3,7 +3,9 @@
 """This module has TestBase class to test the Base class"""
 
 from models.base import Base
+from models.rectangle import Rectangle
 import unittest
+import json
 
 
 class TestBase(unittest.TestCase):
@@ -31,3 +33,25 @@ class TestBase(unittest.TestCase):
         self.assertEqual(b5.id, 5)
         b5.id = 15
         self.assertEqual(b5.id, 15)
+
+    def test_to_json_string(self):
+        """Tests to_json_string function"""
+
+        r1 = Rectangle(10, 7, 2, 8)
+        dictionary = r1.to_dictionary()
+        self.assertEqual(type(dictionary), dict)
+
+        json_dictionary1 = Base.to_json_string([dictionary])
+        json_dictionary1_to_python = json.loads(json_dictionary1)
+        self.assertEqual(type(json_dictionary1_to_python), list)
+
+        self.assertEqual(json_dictionary1_to_python, [dictionary])
+        self.assertEqual(type(json_dictionary1), str)
+
+        json_dictionary2 = Base.to_json_string([])
+        self.assertEqual(type(json_dictionary2), str)
+        self.assertEqual(json_dictionary2, "[]")
+
+        json_dictionary3 = Base.to_json_string(None)
+        self.assertEqual(type(json_dictionary3), str)
+        self.assertEqual(json_dictionary3, '[]')
