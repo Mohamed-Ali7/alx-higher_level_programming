@@ -155,7 +155,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r.x, 10)
         self.assertEqual(r.y, 10)
 
-        r.update(89, 2, 3)
+        r.update(89, 2, 3, id=7)
         self.assertEqual(r.id, 89)
         self.assertEqual(r.width, 2)
         self.assertEqual(r.height, 3)
@@ -175,3 +175,43 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r.height, 3)
         self.assertEqual(r.x, 4)
         self.assertEqual(r.y, 5)
+
+        r.update(89, 2, 3, 4, 5, id=15, x=20)
+        self.assertEqual(r.id, 89)
+        self.assertEqual(r.width, 2)
+        self.assertEqual(r.height, 3)
+        self.assertEqual(r.x, 4)
+        self.assertEqual(r.y, 5)
+
+        r.update(width=13, height=10, y=17, id=15, x=20)
+        self.assertEqual(r.id, 15)
+        self.assertEqual(r.width, 13)
+        self.assertEqual(r.height, 10)
+        self.assertEqual(r.x, 20)
+        self.assertEqual(r.y, 17)
+
+        r.update(id=11)
+        self.assertEqual(r.id, 11)
+
+    def test_update_exception(self):
+        """Tests exceptions thrown by the update function"""
+
+        r = Rectangle(10, 10, 10, 10)
+
+        with self.assertRaises(TypeError):
+            r.update(x="11")
+
+        with self.assertRaises(TypeError):
+            r.update(height="h")
+
+        with self.assertRaises(TypeError):
+            r.update(2, 2, 1, 5, "1")
+
+        with self.assertRaises(ValueError):
+            r.update(width=10, height=15, x=-1, y=1)
+
+        with self.assertRaises(ValueError):
+            r.update(width=0, height=15, x=1, y=1)
+
+        with self.assertRaises(ValueError):
+            r.update(width=10, height=-5, x=1, y=1)

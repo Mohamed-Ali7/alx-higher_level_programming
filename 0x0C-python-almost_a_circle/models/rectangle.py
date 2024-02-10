@@ -159,12 +159,31 @@ class Rectangle(Base):
         return "[Rectangle] ({}) {}/{} - {}/{}"\
             .format(self.id, self.__x, self.__y, self.__width, self.__height)
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """Assigns new value to each attribute"""
 
-        my_attr = ["id", "_Rectangle__width", "_Rectangle__height",
-                   "_Rectangle__x", "_Rectangle__y"]
-        i = 0
-        for arg in args:
-            self.__dict__[my_attr[i]] = arg
-            i += 1
+        if args:
+            length = len(args) - 1
+            self.id = args[0]
+            if length > 0 and args[1]:
+                self.width = args[1]
+                length -= 1
+            if length > 0 and args[2]:
+                self.height = args[2]
+                length -= 1
+            if length > 0 and args[3]:
+                self.x = args[3]
+                length -= 1
+            if length > 0 and args[4]:
+                self.y = args[4]
+        elif kwargs:
+            if "id" in kwargs:
+                self.id = kwargs["id"]
+            if "width" in kwargs:
+                self.width = kwargs["width"]
+            if "height" in kwargs:
+                self.height = kwargs["height"]
+            if "x" in kwargs:
+                self.x = kwargs["x"]
+            if "y" in kwargs:
+                self.y = kwargs["y"]
