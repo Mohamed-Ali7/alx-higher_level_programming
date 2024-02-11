@@ -112,7 +112,10 @@ class Base:
     @classmethod
     def save_to_file_csv(cls, list_objs):
         """
-        Writes the JSON string representation of list_objs to a CSV file
+        Writes a list_objs to a CSV file
+        Format of the CSV:
+            Rectangle: <id>,<width>,<height>,<x>,<y>
+            Square: <id>,<size>,<x>,<y>
         Args:
             list_objs (list): A list of instances who inherits of Base
             for example: list of Rectangle or list of Square instances
@@ -137,7 +140,7 @@ class Base:
     def load_from_file_csv(cls):
         """
         Returns a list of instances from a csv file
-        The filename must be: <Class name>.json - example: Rectangle.csv
+        The filename must be: <Class name>.csv - example: Rectangle.csv
         """
 
         try:
