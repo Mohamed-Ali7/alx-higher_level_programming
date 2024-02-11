@@ -202,3 +202,82 @@ class TestBase(unittest.TestCase):
 
         self.assertEqual(Rectangle.load_from_file(), [])
         self.assertEqual(Square.load_from_file(), [])
+
+    def test_save_to_file_csv(self):
+        """Tests save_to_file_csv function"""
+
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        Rectangle.save_to_file_csv([r1, r2])
+
+        self.assertTrue(os.path.isfile("Rectangle.csv"))
+
+        with open("Rectangle.csv", "r") as file1:
+            file_list1 = file1.readlines()
+
+        self.assertEqual(file_list1[0], "1,10,7,2,8\n")
+        self.assertEqual(file_list1[1], "2,2,4,0,0\n")
+
+        sq1 = Square(10, 2, 8)
+        sq2 = Square(2)
+        Square.save_to_file_csv([sq1, sq2])
+
+        self.assertTrue(os.path.isfile("Square.csv"))
+
+        with open("Square.csv", "r") as file2:
+            file_list2 = file2.readlines()
+
+        self.assertEqual(file_list2[0], "3,10,2,8\n")
+        self.assertEqual(file_list2[1], "4,2,0,0\n")
+
+        Rectangle.save_to_file_csv([])
+        with open("Rectangle.csv", "r") as file3:
+            self.assertEqual(file3.read(), "\n")
+
+        Rectangle.save_to_file_csv(None)
+        with open("Rectangle.csv", "r") as file3:
+            self.assertEqual(file3.read(), "\n")
+
+        if os.path.exists("Rectangle.csv"):
+            os.remove("Rectangle.csv")
+        if os.path.exists("Square.csv"):
+            os.remove("Square.csv")
+
+    def test_load_from_file_csv(self):
+        """Tests load_from_file_csv function"""
+
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        list_rectangles_input = [r1, r2]
+
+        Rectangle.save_to_file_csv(list_rectangles_input)
+
+        list_rectangles_output = Rectangle.load_from_file_csv()
+
+        self.assertEqual(type(list_rectangles_output), list)
+        self.assertEqual(list_rectangles_output[0].to_dictionary(),
+                         r1.to_dictionary())
+        self.assertEqual(list_rectangles_output[1].to_dictionary(),
+                         r2.to_dictionary())
+
+        sq1 = Square(5)
+        sq2 = Square(7, 9, 1)
+        list_squares_input = [sq1, sq2]
+
+        Square.save_to_file_csv(list_squares_input)
+
+        list_squares_output = Square.load_from_file_csv()
+
+        self.assertEqual(type(list_squares_output), list)
+        self.assertEqual(list_squares_output[0].to_dictionary(),
+                         sq1.to_dictionary())
+        self.assertEqual(list_squares_output[1].to_dictionary(),
+                         sq2.to_dictionary())
+
+        if os.path.exists("Rectangle.csv"):
+            os.remove("Rectangle.csv")
+        if os.path.exists("Square.csv"):
+            os.remove("Square.csv")
+
+        self.assertEqual(Rectangle.load_from_file_csv(), [])
+        self.assertEqual(Square.load_from_file_csv(), [])

@@ -3,6 +3,7 @@
 """This module contains Base class"""
 
 import json
+import csv
 
 
 class Base:
@@ -107,3 +108,54 @@ class Base:
             return list_instance
         except FileNotFoundError:
             return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """
+        Writes the JSON string representation of list_objs to a CSV file
+        Args:
+            list_objs (list): A list of instances who inherits of Base
+            for example: list of Rectangle or list of Square instances
+        """
+
+        filename = cls.__name__ + ".csv"
+        with open(filename, "w", newline="") as file:
+            csv_writer = csv.writer(file)
+            if not list_objs:
+                csv_writer.writerow([])
+                return
+
+            if cls.__name__ == "Rectangle":
+                list_objs = [[obj.id, obj.width, obj.height, obj.x, obj.y]
+                             for obj in list_objs]
+            elif cls.__name__ == "Square":
+                list_objs = [[obj.id, obj.size, obj.x, obj.y]
+                             for obj in list_objs]
+            csv_writer.writerows(list_objs)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """
+        Returns a list of instances from a csv file
+        The filename must be: <Class name>.json - example: Rectangle.csv
+        """
+
+        try:
+            instance_list = []
+            file_name = f"{cls.__name__}.csv"
+            obj_dict = {}
+            with open(file_name, "r") as file:
+                csv_reader = csv.reader(file)
+                for line in csv_reader:
+                    line = [int(item) for item in line]
+                    if cls.__name__ == "Rectangle":
+                        obj_dict = {"id": line[0], "width": line[1],
+                                    "height":  line[2], "x": line[3],
+                                    "y": line[4]}
+                    elif cls.__name__ == "Square":
+                        obj_dict = {"id": line[0], "size": line[1],
+                                    "x":  line[2], "y": line[3]}
+                    instance_list.append(cls.create(**obj_dict))
+        except FileNotFoundError:
+            return []
+        return instance_list
