@@ -4,7 +4,9 @@
 
 from models.base import Base
 from models.rectangle import Rectangle
+from models.square import Square
 import unittest
+import os
 
 
 class TestBase(unittest.TestCase):
@@ -63,3 +65,40 @@ class TestBase(unittest.TestCase):
 
         with self.assertRaises(TypeError):
             Base.to_json_string()
+
+    def test_save_to_file(self):
+        """Tests save_to_file function"""
+
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        Rectangle.save_to_file([r1, r2])
+
+        self.assertTrue(os.path.isfile("Rectangle.json"))
+
+        with open("Rectangle.json", "r") as file1:
+            file_list1 = file1.read()
+
+        json_dictionary1 = Rectangle.to_json_string([r1.to_dictionary(),
+                                                    r2.to_dictionary()])
+        self.assertEqual(json_dictionary1, file_list1)
+
+        sq1 = Square(10, 2, 8)
+        sq2 = Square(2)
+        Square.save_to_file([sq1, sq2])
+
+        self.assertTrue(os.path.isfile("Square.json"))
+
+        with open("Square.json", "r") as file2:
+            file_list2 = file2.read()
+
+        json_dictionary2 = Square.to_json_string([sq1.to_dictionary(),
+                                                  sq2.to_dictionary()])
+        self.assertEqual(json_dictionary2, file_list2)
+
+        Rectangle.save_to_file([])
+        with open("Rectangle.json", "r") as file3:
+            self.assertEqual(file3.read(), "[]")
+
+        Rectangle.save_to_file(None)
+        with open("Rectangle.json", "r") as file3:
+            self.assertEqual(file3.read(), "[]")
