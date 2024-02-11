@@ -102,3 +102,31 @@ class TestBase(unittest.TestCase):
         Rectangle.save_to_file(None)
         with open("Rectangle.json", "r") as file3:
             self.assertEqual(file3.read(), "[]")
+
+    def test_from_json_string(self):
+        """Tests from_json_string function"""
+
+        list_input = [
+            {'id': 89, 'width': 10, 'height': 4},
+            {'id': 7, 'width': 1, 'height': 7}]
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+
+        self.assertEqual(type(json_list_input), str)
+        self.assertEqual(type(list_output), list)
+        self.assertEqual(list_input, list_output)
+
+        json_list_input = Square.to_json_string(list_input)
+        list_output = Square.from_json_string(json_list_input)
+
+        self.assertEqual(type(json_list_input), str)
+        self.assertEqual(type(list_output), list)
+        self.assertEqual(list_input, list_output)
+
+        self.assertEqual(Rectangle.from_json_string(""), [])
+        self.assertEqual(Rectangle.from_json_string(None), [])
+        self.assertEqual(Rectangle.from_json_string("[{}, {}]"), [{}, {}])
+        self.assertEqual(Rectangle.from_json_string("[]"), [])
+        self.assertEqual(
+            Rectangle.from_json_string('[{"age": 35}, {"country": "Egypt"}]'),
+            [{"age": 35}, {"country": "Egypt"}])
