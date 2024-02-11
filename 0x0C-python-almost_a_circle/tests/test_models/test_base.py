@@ -108,6 +108,11 @@ class TestBase(unittest.TestCase):
         with open("Rectangle.json", "r") as file3:
             self.assertEqual(file3.read(), "[]")
 
+        if os.path.exists("Rectangle.json"):
+            os.remove("Rectangle.json")
+        if os.path.exists("Square.json"):
+            os.remove("Square.json")
+
     def test_from_json_string(self):
         """Tests from_json_string function"""
 
@@ -158,3 +163,42 @@ class TestBase(unittest.TestCase):
         self.assertEqual(sq1.__str__(), sq2.__str__())
         self.assertIsNot(sq1, sq2)
         self.assertNotEqual(sq1, sq2)
+
+    def test_load_from_file(self):
+        """Tests load_from_file function"""
+
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        list_rectangles_input = [r1, r2]
+
+        Rectangle.save_to_file(list_rectangles_input)
+
+        list_rectangles_output = Rectangle.load_from_file()
+
+        self.assertEqual(type(list_rectangles_output), list)
+        self.assertEqual(list_rectangles_output[0].to_dictionary(),
+                         r1.to_dictionary())
+        self.assertEqual(list_rectangles_output[1].to_dictionary(),
+                         r2.to_dictionary())
+
+        sq1 = Square(5)
+        sq2 = Square(7, 9, 1)
+        list_squares_input = [sq1, sq2]
+
+        Square.save_to_file(list_squares_input)
+
+        list_squares_output = Square.load_from_file()
+
+        self.assertEqual(type(list_squares_output), list)
+        self.assertEqual(list_squares_output[0].to_dictionary(),
+                         sq1.to_dictionary())
+        self.assertEqual(list_squares_output[1].to_dictionary(),
+                         sq2.to_dictionary())
+
+        if os.path.exists("Rectangle.json"):
+            os.remove("Rectangle.json")
+        if os.path.exists("Square.json"):
+            os.remove("Square.json")
+
+        self.assertEqual(Rectangle.load_from_file(), [])
+        self.assertEqual(Square.load_from_file(), [])

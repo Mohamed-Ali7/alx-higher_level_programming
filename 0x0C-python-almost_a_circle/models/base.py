@@ -84,3 +84,26 @@ class Base:
             dummy = cls(1)
         dummy.update(**dictionary)
         return dummy
+
+    @classmethod
+    def load_from_file(cls):
+        """
+        Returns a list of instances from a file
+        The filename must be: <Class name>.json - example: Rectangle.json
+        """
+
+        try:
+            file_name = f"{cls.__name__}.json"
+
+            with open(file_name, "r") as file:
+                file_content = file.read()
+
+            list_attr_values = cls.from_json_string(file_content)
+            list_instance = []
+
+            for attributes in list_attr_values:
+                list_instance.append(cls.create(**attributes))
+
+            return list_instance
+        except FileNotFoundError:
+            return []
