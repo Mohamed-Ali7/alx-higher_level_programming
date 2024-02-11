@@ -12,6 +12,11 @@ import os
 class TestBase(unittest.TestCase):
     """This class is for testing Base class attributes and functions"""
 
+    def setUp(self) -> None:
+        """Setup data before each test method"""
+
+        Base._Base__nb_objects = 0
+
     def test_id(self):
         """Tests the increment of the id attribute in the Base class"""
 
@@ -130,3 +135,24 @@ class TestBase(unittest.TestCase):
         self.assertEqual(
             Rectangle.from_json_string('[{"age": 35}, {"country": "Egypt"}]'),
             [{"age": 35}, {"country": "Egypt"}])
+
+    def test_create(self):
+        r1 = Rectangle(3, 5, 1)
+        r1_dictionary = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dictionary)
+
+        self.assertEqual(type(r2), Rectangle)
+        self.assertEqual(r1_dictionary, r2.to_dictionary())
+        self.assertEqual(r1.__str__(), r2.__str__())
+        self.assertIsNot(r1, r2)
+        self.assertNotEqual(r1, r2)
+
+        sq1 = Square(3, 5, 1)
+        sq1_dictionary = sq1.to_dictionary()
+        sq2 = Square.create(**sq1_dictionary)
+
+        self.assertEqual(type(sq1), Square)
+        self.assertEqual(sq1_dictionary, sq2.to_dictionary())
+        self.assertEqual(sq1.__str__(), sq2.__str__())
+        self.assertIsNot(sq1, sq2)
+        self.assertNotEqual(sq1, sq2)
