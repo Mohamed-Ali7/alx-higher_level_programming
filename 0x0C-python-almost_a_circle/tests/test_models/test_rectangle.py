@@ -309,6 +309,13 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r.x, 4)
         self.assertEqual(r.y, 5)
 
+        r.update()
+        self.assertEqual(r.id, 89)
+        self.assertEqual(r.width, 2)
+        self.assertEqual(r.height, 3)
+        self.assertEqual(r.x, 4)
+        self.assertEqual(r.y, 5)
+
         r.update(89, 2, 3, 4, 5, id=15, x=20)
         self.assertEqual(r.id, 89)
         self.assertEqual(r.width, 2)
@@ -370,6 +377,8 @@ class TestRectangle(unittest.TestCase):
             r4 = Rectangle()
         with self.assertRaises(TypeError):
             r5 = Rectangle("2", 4)
+        with self.assertRaises(TypeError):
+            r3.to_dictionary("1")
         with self.assertRaises(TypeError):
             r6 = Rectangle(2, "4")
         with self.assertRaises(ValueError):

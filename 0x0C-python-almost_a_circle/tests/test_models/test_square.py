@@ -199,6 +199,8 @@ class TestSquare(unittest.TestCase):
             sq.height = 0
         with self.assertRaises(ValueError):
             sq.size = 0
+        with self.assertRaises(ValueError):
+            sq.size = -5
 
         with self.assertRaises(TypeError):
             sq.width = "5"
@@ -287,6 +289,14 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(sq.x, 4)
         self.assertEqual(sq.y, 5)
 
+        sq.update()
+        self.assertEqual(sq.id, 15)
+        self.assertEqual(sq.width, 2)
+        self.assertEqual(sq.height, 2)
+        self.assertEqual(sq.size, 2)
+        self.assertEqual(sq.x, 4)
+        self.assertEqual(sq.y, 5)
+
         sq.update(89, 2, 4, 5, id=15, x=20)
         self.assertEqual(sq.id, 89)
         self.assertEqual(sq.width, 2)
@@ -342,12 +352,18 @@ class TestSquare(unittest.TestCase):
         sq2_dictionary = {'size': 1, 'id': 2, 'x': 1, 'y': 0}
         self.assertEqual(sq2.to_dictionary(), sq2_dictionary)
 
+        sq3 = Square(1)
+        sq3_dictionary = {'size': 1, 'id': 3, 'x': 0, 'y': 0}
+        self.assertEqual(sq3.to_dictionary(), sq3_dictionary)
+
         sq3 = Square(1, 1)
         sq3.update(**sq2_dictionary)
         self.assertEqual(sq3.to_dictionary(), sq2_dictionary)
 
         with self.assertRaises(TypeError):
             sq4 = Square()
+        with self.assertRaises(TypeError):
+            sq3.to_dictionary("1")
         with self.assertRaises(TypeError):
             sq5 = Square("2", 4)
         with self.assertRaises(TypeError):
