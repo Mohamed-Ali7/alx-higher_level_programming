@@ -16,6 +16,48 @@ class TestSquare(unittest.TestCase):
 
         Base._Base__nb_objects = 0
 
+    def test_instantiation(self):
+        """Tests instantiation of the Rectangle class"""
+
+        sq1 = Square(5)
+        self.assertEqual(sq1.id, 1)
+        self.assertEqual(sq1.size, 5)
+        self.assertEqual(sq1.x, 0)
+        self.assertEqual(sq1.y, 0)
+
+        sq2 = Square(5, 7)
+        self.assertEqual(sq2.id, 2)
+        self.assertEqual(sq2.size, 5)
+        self.assertEqual(sq2.x, 7)
+        self.assertEqual(sq2.y, 0)
+
+        sq3 = Square(5, 7, 4)
+        self.assertEqual(sq3.id, 3)
+        self.assertEqual(sq3.size, 5)
+        self.assertEqual(sq3.x, 7)
+        self.assertEqual(sq3.y, 4)
+
+        sq4 = Square(5, 7, 4, 9)
+        self.assertEqual(sq4.id, 9)
+        self.assertEqual(sq4.size, 5)
+        self.assertEqual(sq4.x, 7)
+        self.assertEqual(sq4.y, 4)
+
+        sq4 = Square(5, 7, 4, [9])
+        self.assertEqual(sq4.id, [9])
+        self.assertEqual(sq4.size, 5)
+        self.assertEqual(sq4.x, 7)
+        self.assertEqual(sq4.y, 4)
+
+        with self.assertRaises(TypeError):
+            sq5 = Square()
+        with self.assertRaises(TypeError):
+            sq5 = Square(5, "4")
+        with self.assertRaises(TypeError):
+            sq5 = Square("5", 4)
+        with self.assertRaises(TypeError):
+            sq5 = Square(5, 4, "7")
+
     def test_width(self):
         """Tests the width of the rectangle"""
 

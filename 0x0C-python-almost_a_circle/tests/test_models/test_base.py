@@ -40,6 +40,9 @@ class TestBase(unittest.TestCase):
         b5.id = 15
         self.assertEqual(b5.id, 15)
 
+        b6 = Base(7)
+        self.assertEqual(b6.id, 7)
+
     def test_to_json_string(self):
         """Tests to_json_string function"""
 
