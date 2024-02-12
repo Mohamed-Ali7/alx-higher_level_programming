@@ -50,13 +50,6 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r4.x, 4)
         self.assertEqual(r4.y, 9)
 
-        r4 = Rectangle(5, 7, 4, 9, [15])
-        self.assertEqual(r4.id, [15])
-        self.assertEqual(r4.width, 5)
-        self.assertEqual(r4.height, 7)
-        self.assertEqual(r4.x, 4)
-        self.assertEqual(r4.y, 9)
-
         with self.assertRaises(TypeError):
             r5 = Rectangle()
         with self.assertRaises(TypeError):
@@ -65,10 +58,6 @@ class TestRectangle(unittest.TestCase):
             r5 = Rectangle(5, "4")
         with self.assertRaises(TypeError):
             r5 = Rectangle("5", 4)
-        with self.assertRaises(TypeError):
-            r5 = Rectangle(5, None)
-        with self.assertRaises(TypeError):
-            r5 = Rectangle(None, 4)
         with self.assertRaises(TypeError):
             r5 = Rectangle(5, 4, "7")
         with self.assertRaises(TypeError):

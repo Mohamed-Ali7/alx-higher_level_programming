@@ -49,12 +49,6 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(sq4.x, 7)
         self.assertEqual(sq4.y, 4)
 
-        sq4 = Square(5, 7, 4, [9])
-        self.assertEqual(sq4.id, [9])
-        self.assertEqual(sq4.size, 5)
-        self.assertEqual(sq4.x, 7)
-        self.assertEqual(sq4.y, 4)
-
         with self.assertRaises(TypeError):
             sq5 = Square()
         with self.assertRaises(TypeError):

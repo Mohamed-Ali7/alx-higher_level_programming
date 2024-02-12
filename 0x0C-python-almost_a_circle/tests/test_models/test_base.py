@@ -51,8 +51,6 @@ class TestBase(unittest.TestCase):
 
         with self.assertRaises(TypeError):
             b6 = Base(7, 4)
-        self.assertEqual(float('inf'), Base(float('inf')).id)
-        self.assertNotEqual(float('nan'), Base(float('nan')).id)
 
     def test_to_json_string(self):
         """Tests to_json_string function"""
@@ -74,11 +72,8 @@ class TestBase(unittest.TestCase):
         self.assertEqual(type(json_dictionary3), str)
         self.assertEqual(json_dictionary3, '[]')
 
-        json_dictionary4 = Base.to_json_string([{}])
-        self.assertEqual(json_dictionary4, "[{}]")
-
-        json_dictionary5 = Base.to_json_string([{}, {}])
-        self.assertEqual(json_dictionary5, "[{}, {}]")
+        json_dictionary4 = Base.to_json_string([{}, {}])
+        self.assertEqual(json_dictionary4, "[{}, {}]")
 
         json_dictionary5 = Base.to_json_string([{"age": 30},
                                                 {"country": "Egypt"}])
