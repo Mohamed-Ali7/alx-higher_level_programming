@@ -4,6 +4,7 @@
 
 import json
 import csv
+import turtle
 
 
 class Base:
@@ -162,3 +163,49 @@ class Base:
         except FileNotFoundError:
             return []
         return instance_list
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """
+        Opens a window and draws all the Rectangles and Squares
+        Args:
+            list_rectangles (list): Is the list of rectangles to be drawn
+            list_squares (list): Is the list of squares to be drawn
+        """
+
+        my_turtle = turtle.Turtle()
+        my_turtle.screen.bgcolor("#a0db8e")
+        my_turtle.pensize(3)
+        my_turtle.color("#555656")
+        for rectangle in list_rectangles:
+            my_turtle.showturtle()
+            my_turtle.penup()
+            my_turtle.goto(rectangle.x, rectangle.y)
+            my_turtle.pendown()
+            my_turtle.forward(rectangle.width)
+            my_turtle.left(90)
+            my_turtle.forward(rectangle.height)
+            my_turtle.left(90)
+            my_turtle.forward(rectangle.width)
+            my_turtle.left(90)
+            my_turtle.forward(rectangle.height)
+            my_turtle.left(90)
+            my_turtle.hideturtle()
+
+        my_turtle.color("#0a75ad")
+        for square in list_squares:
+            my_turtle.showturtle()
+            my_turtle.penup()
+            my_turtle.goto(square.x, square.y)
+            my_turtle.pendown()
+            my_turtle.forward(square.size)
+            my_turtle.left(90)
+            my_turtle.forward(square.size)
+            my_turtle.left(90)
+            my_turtle.forward(square.size)
+            my_turtle.left(90)
+            my_turtle.forward(square.size)
+            my_turtle.left(90)
+            my_turtle.hideturtle()
+
+        turtle.done()
