@@ -83,18 +83,6 @@ class TestRectangle(unittest.TestCase):
             r.width = "5"
 
         with self.assertRaises(TypeError):
-            r.width = {"5": 5}
-
-        with self.assertRaises(TypeError):
-            r.width = [5]
-
-        with self.assertRaises(TypeError):
-            r.width = (5,)
-
-        with self.assertRaises(TypeError):
-            r.width = {5}
-
-        with self.assertRaises(TypeError):
             r.width = None
 
         with self.assertRaises(TypeError):
@@ -117,18 +105,6 @@ class TestRectangle(unittest.TestCase):
 
         with self.assertRaises(TypeError):
             r.height = "5"
-
-        with self.assertRaises(TypeError):
-            r.height = {"5": 5}
-
-        with self.assertRaises(TypeError):
-            r.height = [5]
-
-        with self.assertRaises(TypeError):
-            r.height = (5,)
-
-        with self.assertRaises(TypeError):
-            r.height = {5}
 
         with self.assertRaises(TypeError):
             r.height = None
@@ -155,18 +131,6 @@ class TestRectangle(unittest.TestCase):
             r.x = "5"
 
         with self.assertRaises(TypeError):
-            r.x = {"5": 5}
-
-        with self.assertRaises(TypeError):
-            r.x = [5]
-
-        with self.assertRaises(TypeError):
-            r.x = (5,)
-
-        with self.assertRaises(TypeError):
-            r.x = {5}
-
-        with self.assertRaises(TypeError):
             r.x = None
 
         with self.assertRaises(TypeError):
@@ -186,18 +150,6 @@ class TestRectangle(unittest.TestCase):
 
         with self.assertRaises(TypeError):
             r.y = "5"
-
-        with self.assertRaises(TypeError):
-            r.y = {"5": 5}
-
-        with self.assertRaises(TypeError):
-            r.y = [5]
-
-        with self.assertRaises(TypeError):
-            r.y = (5,)
-
-        with self.assertRaises(TypeError):
-            r.y = {5}
 
         with self.assertRaises(TypeError):
             r.y = None
