@@ -57,18 +57,33 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r4.x, 4)
         self.assertEqual(r4.y, 9)
 
-        with self.assertRaises(TypeError):
+        with self.assertRaises(TypeError) as ex:
             r5 = Rectangle()
-        with self.assertRaises(TypeError):
+        msg = "__init__() missing 2 required positional "\
+            "arguments: 'width' and 'height'"
+        self.assertEqual(str(ex.exception), msg)
+
+        msg = "__init__() missing 1 required positional "\
+            "argument: 'height'"
+        with self.assertRaises(TypeError) as ex:
             r5 = Rectangle(5)
-        with self.assertRaises(TypeError):
+        self.assertEqual(str(ex.exception), msg)
+
+        with self.assertRaises(TypeError) as ex:
             r5 = Rectangle(5, "4")
-        with self.assertRaises(TypeError):
+        self.assertEqual(str(ex.exception), "height must be an integer")
+
+        with self.assertRaises(TypeError) as ex:
             r5 = Rectangle("5", 4)
-        with self.assertRaises(TypeError):
+        self.assertEqual(str(ex.exception), "width must be an integer")
+
+        with self.assertRaises(TypeError) as ex:
             r5 = Rectangle(5, 4, "7")
-        with self.assertRaises(TypeError):
+        self.assertEqual(str(ex.exception), "x must be an integer")
+
+        with self.assertRaises(TypeError) as ex:
             r5 = Rectangle(5, 4, 7, "8")
+        self.assertEqual(str(ex.exception), "y must be an integer")
 
     def test_width(self):
         """Tests the width of the rectangle"""
