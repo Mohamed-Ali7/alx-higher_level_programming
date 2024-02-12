@@ -51,6 +51,8 @@ class TestBase(unittest.TestCase):
 
         with self.assertRaises(TypeError):
             b6 = Base(7, 4)
+        self.assertEqual(float('inf'), Base(float('inf')).id)
+        self.assertNotEqual(float('nan'), Base(float('nan')).id)
 
     def test_to_json_string(self):
         """Tests to_json_string function"""
