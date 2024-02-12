@@ -63,6 +63,14 @@ class TestSquare(unittest.TestCase):
             sq5 = Square("5", 4)
         with self.assertRaises(TypeError):
             sq5 = Square(5, 4, "7")
+        with self.assertRaises(ValueError):
+            sq5 = Square(-1)
+        with self.assertRaises(ValueError):
+            sq5 = Square(0, 4)
+        with self.assertRaises(ValueError):
+            sq5 = Square(1, -1)
+        with self.assertRaises(ValueError):
+            sq5 = Square(1, 2, -1)
 
     def test_width(self):
         """Tests the width of the square"""
