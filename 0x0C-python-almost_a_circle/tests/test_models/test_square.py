@@ -319,6 +319,13 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(sq.x, 20)
         self.assertEqual(sq.y, 17)
 
+        my_dict = {"size": 15, "y": 10, "id": 3, "x": 5}
+        sq.update(**my_dict)
+        self.assertEqual(sq.id, 3)
+        self.assertEqual(sq.size, 15)
+        self.assertEqual(sq.x, 5)
+        self.assertEqual(sq.y, 10)
+
         sq.update(id=11)
         self.assertEqual(sq.id, 11)
 
