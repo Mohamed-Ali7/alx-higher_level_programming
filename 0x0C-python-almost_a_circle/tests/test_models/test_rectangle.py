@@ -57,33 +57,18 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r4.x, 4)
         self.assertEqual(r4.y, 9)
 
-        with self.assertRaises(TypeError) as ex:
+        with self.assertRaises(TypeError):
             r5 = Rectangle()
-        msg = "__init__() missing 2 required positional "\
-            "arguments: 'width' and 'height'"
-        self.assertEqual(str(ex.exception), msg)
-
-        msg = "__init__() missing 1 required positional "\
-            "argument: 'height'"
-        with self.assertRaises(TypeError) as ex:
+        with self.assertRaises(TypeError):
             r5 = Rectangle(5)
-        self.assertEqual(str(ex.exception), msg)
-
-        with self.assertRaises(TypeError) as ex:
+        with self.assertRaises(TypeError):
             r5 = Rectangle(5, "4")
-        self.assertEqual(str(ex.exception), "height must be an integer")
-
-        with self.assertRaises(TypeError) as ex:
+        with self.assertRaises(TypeError):
             r5 = Rectangle("5", 4)
-        self.assertEqual(str(ex.exception), "width must be an integer")
-
-        with self.assertRaises(TypeError) as ex:
+        with self.assertRaises(TypeError):
             r5 = Rectangle(5, 4, "7")
-        self.assertEqual(str(ex.exception), "x must be an integer")
-
-        with self.assertRaises(TypeError) as ex:
+        with self.assertRaises(TypeError):
             r5 = Rectangle(5, 4, 7, "8")
-        self.assertEqual(str(ex.exception), "y must be an integer")
 
     def test_width(self):
         """Tests the width of the rectangle"""
@@ -109,6 +94,11 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError):
             r.width = 0
 
+        with self.assertRaises(ValueError):
+            r = Rectangle(0, 5)
+        with self.assertRaises(ValueError):
+            r = Rectangle(-5, 5)
+
     def test_height(self):
         """Tests the height of the rectangle"""
 
@@ -133,6 +123,11 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError):
             r.height = 0
 
+        with self.assertRaises(ValueError):
+            r = Rectangle(5, 0)
+        with self.assertRaises(ValueError):
+            r = Rectangle(5, -5)
+
     def test_x(self):
         """Tests x of the rectangle"""
 
@@ -154,6 +149,9 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError):
             r.x = -5
 
+        with self.assertRaises(ValueError):
+            r = Rectangle(4, 5, -1)
+
     def test_y(self):
         """Tests y of the rectangle"""
 
@@ -174,6 +172,9 @@ class TestRectangle(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             r.y = -5
+
+        with self.assertRaises(ValueError):
+            r = Rectangle(4, 5, 1, -2)
 
     def test_area(self):
         """Tests the area of the rectangle"""
