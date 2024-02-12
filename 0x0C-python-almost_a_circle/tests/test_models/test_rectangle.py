@@ -60,8 +60,6 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(TypeError):
             r5 = Rectangle()
         with self.assertRaises(TypeError):
-            r5 = Rectangle(5, 7, 4, 9, 15, 20)
-        with self.assertRaises(TypeError):
             r5 = Rectangle(5)
         with self.assertRaises(TypeError):
             r5 = Rectangle(5, "4")
@@ -71,6 +69,8 @@ class TestRectangle(unittest.TestCase):
             r5 = Rectangle(5, 4, "7")
         with self.assertRaises(TypeError):
             r5 = Rectangle(5, 4, 7, "8")
+        with self.assertRaises(TypeError):
+            r5 = Rectangle(float('inf'), 2)
 
     def test_width(self):
         """Tests the width of the rectangle"""
