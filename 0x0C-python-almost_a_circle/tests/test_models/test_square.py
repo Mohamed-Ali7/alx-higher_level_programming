@@ -7,6 +7,8 @@ import unittest
 from models.square import Square
 from models.rectangle import Rectangle
 from models.base import Base
+import io
+from contextlib import redirect_stdout
 
 
 class TestSquare(unittest.TestCase):
@@ -206,6 +208,33 @@ class TestSquare(unittest.TestCase):
             sq.size = "5"
         with self.assertRaises(TypeError):
             sq.size = None
+
+    def test_display(self):
+        """Tests display function"""
+        sq1 = Square(2)
+
+        output = io.StringIO()
+
+        with redirect_stdout(output):
+            sq1.display()
+        self.assertEqual("##\n##\n", output.getvalue())
+
+        output = io.StringIO()
+        sq2 = Square(2, 3, 4)
+        with redirect_stdout(output):
+            sq2.display()
+        self.assertEqual("\n\n\n\n   ##\n   ##\n", output.getvalue())
+
+        output = io.StringIO()
+        sq3 = Square(2, 4)
+        with redirect_stdout(output):
+            sq3.display()
+        display = "    ##\n    ##\n"
+        self.assertEqual(display, output.getvalue())
+
+        sq4 = Square(3, 4, 5)
+        with self.assertRaises(TypeError):
+            sq4.display(1)
 
     def test_update(self):
         """Tests Update function that updates the attributes of an instance"""
