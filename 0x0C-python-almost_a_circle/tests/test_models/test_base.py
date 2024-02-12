@@ -284,3 +284,7 @@ class TestBase(unittest.TestCase):
 
         self.assertEqual(Rectangle.load_from_file_csv(), [])
         self.assertEqual(Square.load_from_file_csv(), [])
+
+    def tearDown(self):
+        """Runs after each test method"""
+        pass
