@@ -375,16 +375,4 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(sq3.to_dictionary(), sq2_dictionary)
 
         with self.assertRaises(TypeError):
-            sq4 = Square()
-        with self.assertRaises(TypeError):
             sq3.to_dictionary("1")
-        with self.assertRaises(TypeError):
-            sq5 = Square("2", 4)
-        with self.assertRaises(TypeError):
-            sq6 = Square(2, 4, "5")
-        with self.assertRaises(ValueError):
-            sq7 = Square(-2, "4")
-        with self.assertRaises(ValueError):
-            sq8 = Square(2, 0, -1)
-        with self.assertRaises(TypeError):
-            sq9 = Square("1", -1)

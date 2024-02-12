@@ -32,6 +32,12 @@ class TestBase(unittest.TestCase):
         b3 = Base(12)
         self.assertEqual(b3.id, 12)
 
+        b3 = Base("12")
+        self.assertEqual(b3.id, "12")
+
+        b3 = Base(id="12")
+        self.assertEqual(b3.id, "12")
+
         b4 = Base()
         self.assertEqual(b4.id, 4)
 
@@ -66,8 +72,11 @@ class TestBase(unittest.TestCase):
         self.assertEqual(type(json_dictionary3), str)
         self.assertEqual(json_dictionary3, '[]')
 
-        json_dictionary4 = Base.to_json_string([{}, {}])
-        self.assertEqual(json_dictionary4, "[{}, {}]")
+        json_dictionary4 = Base.to_json_string([{}])
+        self.assertEqual(json_dictionary4, "[{}]")
+
+        json_dictionary5 = Base.to_json_string([{}, {}])
+        self.assertEqual(json_dictionary5, "[{}, {}]")
 
         json_dictionary5 = Base.to_json_string([{"age": 30},
                                                 {"country": "Egypt"}])

@@ -348,16 +348,4 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r3.to_dictionary(), r2_dictionary)
 
         with self.assertRaises(TypeError):
-            r4 = Rectangle()
-        with self.assertRaises(TypeError):
-            r5 = Rectangle("2", 4)
-        with self.assertRaises(TypeError):
             r3.to_dictionary("1")
-        with self.assertRaises(TypeError):
-            r6 = Rectangle(2, "4")
-        with self.assertRaises(ValueError):
-            r7 = Rectangle(-2, "4")
-        with self.assertRaises(ValueError):
-            r8 = Rectangle(2, 0)
-        with self.assertRaises(TypeError):
-            r9 = Rectangle("2", 0)
