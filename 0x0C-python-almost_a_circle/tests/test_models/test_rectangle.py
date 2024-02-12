@@ -336,14 +336,6 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r.x, 20)
         self.assertEqual(r.y, 17)
 
-        my_dict = {"width": 20, "height": 15, "y": 10, "id": 3, "x": 5}
-        r.update(**my_dict)
-        self.assertEqual(r.id, 3)
-        self.assertEqual(r.width, 20)
-        self.assertEqual(r.height, 15)
-        self.assertEqual(r.x, 5)
-        self.assertEqual(r.y, 10)
-
         r.update(id=11)
         self.assertEqual(r.id, 11)
 

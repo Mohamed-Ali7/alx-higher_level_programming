@@ -26,11 +26,23 @@ class TestBase(unittest.TestCase):
         b2 = Base()
         self.assertEqual(b2.id, 2)
 
-        b3 = Base()
+        b3 = Base(None)
         self.assertEqual(b3.id, 3)
 
         b3 = Base(12)
         self.assertEqual(b3.id, 12)
+
+        b3 = Base(12.5)
+        self.assertEqual(b3.id, 12.5)
+
+        b3 = Base([12])
+        self.assertEqual(b3.id, [12])
+
+        b3 = Base({1: 10})
+        self.assertEqual(b3.id, {1: 10})
+
+        b3 = Base({12})
+        self.assertEqual(b3.id, {12})
 
         b4 = Base()
         self.assertEqual(b4.id, 4)
@@ -45,6 +57,8 @@ class TestBase(unittest.TestCase):
 
         with self.assertRaises(TypeError):
             b6 = Base(7, 4)
+        with self.assertRaises(AttributeError):
+            Base().__nb_instances
 
     def test_to_json_string(self):
         """Tests to_json_string function"""
