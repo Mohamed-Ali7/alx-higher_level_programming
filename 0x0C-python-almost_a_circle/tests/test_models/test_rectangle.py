@@ -3,9 +3,10 @@
 """This module has TestRectangle class to test the Rectangle class"""
 
 import unittest
-
+import io
 from models.rectangle import Rectangle
 from models.base import Base
+from contextlib import redirect_stdout
 
 
 class TestRectangle(unittest.TestCase):
@@ -220,6 +221,33 @@ class TestRectangle(unittest.TestCase):
         r.width = 7
         r.height = 8
         self.assertEqual(r.area(), 56)
+
+    def test_display(self):
+        """Tests display function"""
+        r1 = Rectangle(2, 3)
+
+        output = io.StringIO()
+
+        with redirect_stdout(output):
+            r1.display()
+        self.assertEqual("##\n##\n##\n", output.getvalue())
+
+        output = io.StringIO()
+        r2 = Rectangle(2, 3, 4, 2)
+        with redirect_stdout(output):
+            r2.display()
+        self.assertEqual("\n\n    ##\n    ##\n    ##\n", output.getvalue())
+
+        output = io.StringIO()
+        r3 = Rectangle(2, 4, 4)
+        with redirect_stdout(output):
+            r3.display()
+        display = "    ##\n    ##\n    ##\n    ##\n"
+        self.assertEqual(display, output.getvalue())
+
+        r5 = Rectangle(3, 4, 5, 2)
+        with self.assertRaises(TypeError):
+            r5.display(1)
 
     def test_str(self):
         """Tests the __str__ method"""
