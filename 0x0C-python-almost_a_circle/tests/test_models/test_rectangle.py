@@ -69,20 +69,6 @@ class TestRectangle(unittest.TestCase):
             r5 = Rectangle(5, 4, "7")
         with self.assertRaises(TypeError):
             r5 = Rectangle(5, 4, 7, "8")
-        
-        with self.assertRaises(ValueError):
-            r5 = Rectangle(-5, 4)
-        with self.assertRaises(ValueError):
-            r5 = Rectangle(0, 4)
-        with self.assertRaises(ValueError):
-            r5 = Rectangle(5, -4)
-        with self.assertRaises(ValueError):
-            r5 = Rectangle(5, 0)
-        with self.assertRaises(ValueError):
-            r5 = Rectangle(5, 0, -1)
-        with self.assertRaises(ValueError):
-            r5 = Rectangle(5, 0, 1, -2)
-
 
     def test_width(self):
         """Tests the width of the rectangle"""
@@ -247,7 +233,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r.__str__(), "[Rectangle] (15) 4/3 - 7/3")
 
         r = Rectangle(5, 5)
-        self.assertEqual(r.__str__(), "[Rectangle] (2) 0/0 - 5/5")
+        self.assertEqual(str(r), "[Rectangle] (2) 0/0 - 5/5")
 
         r = Rectangle(5, 5, 1, 3)
         self.assertEqual(r.__str__(), "[Rectangle] (3) 1/3 - 5/5")

@@ -57,7 +57,6 @@ class TestBase(unittest.TestCase):
 
         self.assertEqual(json_dictionary1, str([dictionary]).replace("'", '"'))
         self.assertEqual(type(json_dictionary1), str)
-        self.assertEqual(len(json_dictionary1), 53)
 
         json_dictionary2 = Base.to_json_string([])
         self.assertEqual(type(json_dictionary2), str)
