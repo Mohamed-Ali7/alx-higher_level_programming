@@ -23,8 +23,8 @@ class TestBase(unittest.TestCase):
         b1 = Base()
         self.assertEqual(b1.id, 1)
 
-        b1 = Base()
-        self.assertEqual(b1.id, 2)
+        b2 = Base()
+        self.assertEqual(b2.id, 2)
 
         b3 = Base()
         self.assertEqual(b3.id, 3)
@@ -42,6 +42,9 @@ class TestBase(unittest.TestCase):
 
         b6 = Base(7)
         self.assertEqual(b6.id, 7)
+
+        with self.assertRaises(TypeError):
+            b6 = Base(7, 4)
 
     def test_to_json_string(self):
         """Tests to_json_string function"""
@@ -73,6 +76,8 @@ class TestBase(unittest.TestCase):
 
         with self.assertRaises(TypeError):
             Base.to_json_string()
+        with self.assertRaises(TypeError):
+            Base.to_json_string(1, 5)
 
     def test_save_to_file(self):
         """Tests save_to_file function"""
@@ -166,6 +171,11 @@ class TestBase(unittest.TestCase):
         self.assertEqual(sq1.__str__(), sq2.__str__())
         self.assertIsNot(sq1, sq2)
         self.assertNotEqual(sq1, sq2)
+
+        with self.assertRaises(TypeError):
+            Square.create(sq1_dictionary)
+        with self.assertRaises(TypeError):
+            Rectangle.create(r1_dictionary)
 
     def test_load_from_file(self):
         """Tests load_from_file function"""
@@ -284,7 +294,3 @@ class TestBase(unittest.TestCase):
 
         self.assertEqual(Rectangle.load_from_file_csv(), [])
         self.assertEqual(Square.load_from_file_csv(), [])
-
-    def tearDown(self):
-        """Runs after each test method"""
-        pass
