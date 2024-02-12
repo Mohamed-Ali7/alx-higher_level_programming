@@ -169,6 +169,12 @@ class TestSquare(unittest.TestCase):
         sq = Square(size=7, id=15, y=3, x=4)
         self.assertEqual(sq.__str__(), "[Square] (15) 4/3 - 7")
 
+        sq = Square(6)
+        self.assertEqual(sq.__str__(), "[Square] (2) 0/0 - 6")
+
+        sq = Square(5, 5)
+        self.assertEqual(sq.__str__(), "[Square] (3) 5/0 - 5")
+
     def test_size(self):
         """Tests the size of the square"""
 

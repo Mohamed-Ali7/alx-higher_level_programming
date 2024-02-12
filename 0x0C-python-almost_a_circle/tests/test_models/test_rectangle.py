@@ -222,6 +222,9 @@ class TestRectangle(unittest.TestCase):
         r.height = 8
         self.assertEqual(r.area(), 56)
 
+        with self.assertRaises(TypeError):
+            r.area(1)
+
     def test_display(self):
         """Tests display function"""
         r1 = Rectangle(2, 3)
@@ -263,6 +266,9 @@ class TestRectangle(unittest.TestCase):
 
         r = Rectangle(5, 5)
         self.assertEqual(r.__str__(), "[Rectangle] (2) 0/0 - 5/5")
+
+        r = Rectangle(5, 5, 1, 3)
+        self.assertEqual(r.__str__(), "[Rectangle] (3) 1/3 - 5/5")
 
     def test_update(self):
         """Tests Update function that updates the attributes of an instance"""
