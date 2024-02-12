@@ -95,6 +95,15 @@ class TestBase(unittest.TestCase):
                                                     r2.to_dictionary()])
         self.assertEqual(json_dictionary1, file_list1)
 
+        Rectangle.save_to_file([])
+
+        self.assertTrue(os.path.isfile("Rectangle.json"))
+
+        with open("Rectangle.json", "r") as file1:
+            file_list1 = file1.read()
+
+        self.assertEqual(file_list1, "[]")
+
         sq1 = Square(10, 2, 8)
         sq2 = Square(2)
         Square.save_to_file([sq1, sq2])
@@ -108,6 +117,15 @@ class TestBase(unittest.TestCase):
                                                   sq2.to_dictionary()])
         self.assertEqual(json_dictionary2, file_list2)
 
+        Square.save_to_file([])
+
+        self.assertTrue(os.path.isfile("Rectangle.json"))
+
+        with open("Square.json", "r") as file1:
+            file_list2 = file1.read()
+
+        self.assertEqual(file_list2, "[]")
+
         Rectangle.save_to_file([])
         with open("Rectangle.json", "r") as file3:
             self.assertEqual(file3.read(), "[]")
@@ -115,6 +133,11 @@ class TestBase(unittest.TestCase):
         Rectangle.save_to_file(None)
         with open("Rectangle.json", "r") as file3:
             self.assertEqual(file3.read(), "[]")
+
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file()
+        with self.assertRaises(TypeError):
+            Square.save_to_file()
 
         if os.path.exists("Rectangle.json"):
             os.remove("Rectangle.json")
@@ -149,6 +172,11 @@ class TestBase(unittest.TestCase):
             Rectangle.from_json_string('[{"age": 35}, {"country": "Egypt"}]'),
             [{"age": 35}, {"country": "Egypt"}])
 
+        with self.assertRaises(TypeError):
+            Rectangle.from_json_string()
+        with self.assertRaises(TypeError):
+            Square.from_json_string()
+
     def test_create(self):
         """Tests create function"""
 
@@ -176,6 +204,8 @@ class TestBase(unittest.TestCase):
             Square.create(sq1_dictionary)
         with self.assertRaises(TypeError):
             Rectangle.create(r1_dictionary)
+        with self.assertRaises(TypeError):
+            Rectangle.create(1, r1_dictionary)
 
     def test_load_from_file(self):
         """Tests load_from_file function"""
@@ -208,6 +238,9 @@ class TestBase(unittest.TestCase):
         self.assertEqual(list_squares_output[1].to_dictionary(),
                          sq2.to_dictionary())
 
+        with self.assertRaises(TypeError):
+            Rectangle.load_from_file("file")
+
         if os.path.exists("Rectangle.json"):
             os.remove("Rectangle.json")
         if os.path.exists("Square.json"):
@@ -231,6 +264,15 @@ class TestBase(unittest.TestCase):
         self.assertEqual(file_list1[0], "1,10,7,2,8\n")
         self.assertEqual(file_list1[1], "2,2,4,0,0\n")
 
+        Rectangle.save_to_file_csv([r1])
+
+        self.assertTrue(os.path.isfile("Rectangle.csv"))
+
+        with open("Rectangle.csv", "r") as file1:
+            file_list1 = file1.readlines()
+
+        self.assertEqual(file_list1[0], "1,10,7,2,8\n")
+
         sq1 = Square(10, 2, 8)
         sq2 = Square(2)
         Square.save_to_file_csv([sq1, sq2])
@@ -243,6 +285,15 @@ class TestBase(unittest.TestCase):
         self.assertEqual(file_list2[0], "3,10,2,8\n")
         self.assertEqual(file_list2[1], "4,2,0,0\n")
 
+        Square.save_to_file_csv([sq1])
+
+        self.assertTrue(os.path.isfile("Square.csv"))
+
+        with open("Square.csv", "r") as file2:
+            file_list2 = file2.readlines()
+
+        self.assertEqual(file_list2[0], "3,10,2,8\n")
+
         Rectangle.save_to_file_csv([])
         with open("Rectangle.csv", "r") as file3:
             self.assertEqual(file3.read(), "\n")
@@ -250,6 +301,9 @@ class TestBase(unittest.TestCase):
         Rectangle.save_to_file_csv(None)
         with open("Rectangle.csv", "r") as file3:
             self.assertEqual(file3.read(), "\n")
+
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv(r1)
 
         if os.path.exists("Rectangle.csv"):
             os.remove("Rectangle.csv")
@@ -291,6 +345,9 @@ class TestBase(unittest.TestCase):
             os.remove("Rectangle.csv")
         if os.path.exists("Square.csv"):
             os.remove("Square.csv")
+
+        with self.assertRaises(TypeError):
+            Rectangle.load_from_file_csv("file")
 
         self.assertEqual(Rectangle.load_from_file_csv(), [])
         self.assertEqual(Square.load_from_file_csv(), [])
