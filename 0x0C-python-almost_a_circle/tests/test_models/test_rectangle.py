@@ -26,6 +26,8 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r1.x, 0)
         self.assertEqual(r1.y, 0)
 
+        self.assertTrue(isinstance(r1, Base))
+
         r2 = Rectangle(5, 7, 4)
         self.assertEqual(r2.id, 2)
         self.assertEqual(r2.width, 5)
@@ -80,6 +82,18 @@ class TestRectangle(unittest.TestCase):
             r.width = "5"
 
         with self.assertRaises(TypeError):
+            r.width = {"5": 5}
+
+        with self.assertRaises(TypeError):
+            r.width = [5]
+
+        with self.assertRaises(TypeError):
+            r.width = (5,)
+
+        with self.assertRaises(TypeError):
+            r.width = {5}
+
+        with self.assertRaises(TypeError):
             r.width = None
 
         with self.assertRaises(TypeError):
@@ -102,6 +116,18 @@ class TestRectangle(unittest.TestCase):
 
         with self.assertRaises(TypeError):
             r.height = "5"
+
+        with self.assertRaises(TypeError):
+            r.height = {"5": 5}
+
+        with self.assertRaises(TypeError):
+            r.height = [5]
+
+        with self.assertRaises(TypeError):
+            r.height = (5,)
+
+        with self.assertRaises(TypeError):
+            r.height = {5}
 
         with self.assertRaises(TypeError):
             r.height = None
@@ -128,6 +154,18 @@ class TestRectangle(unittest.TestCase):
             r.x = "5"
 
         with self.assertRaises(TypeError):
+            r.x = {"5": 5}
+
+        with self.assertRaises(TypeError):
+            r.x = [5]
+
+        with self.assertRaises(TypeError):
+            r.x = (5,)
+
+        with self.assertRaises(TypeError):
+            r.x = {5}
+
+        with self.assertRaises(TypeError):
             r.x = None
 
         with self.assertRaises(TypeError):
@@ -147,6 +185,18 @@ class TestRectangle(unittest.TestCase):
 
         with self.assertRaises(TypeError):
             r.y = "5"
+
+        with self.assertRaises(TypeError):
+            r.y = {"5": 5}
+
+        with self.assertRaises(TypeError):
+            r.y = [5]
+
+        with self.assertRaises(TypeError):
+            r.y = (5,)
+
+        with self.assertRaises(TypeError):
+            r.y = {5}
 
         with self.assertRaises(TypeError):
             r.y = None

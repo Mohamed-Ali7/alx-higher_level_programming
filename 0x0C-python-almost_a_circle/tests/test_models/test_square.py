@@ -5,6 +5,7 @@
 import unittest
 
 from models.square import Square
+from models.rectangle import Rectangle
 from models.base import Base
 
 
@@ -17,13 +18,16 @@ class TestSquare(unittest.TestCase):
         Base._Base__nb_objects = 0
 
     def test_instantiation(self):
-        """Tests instantiation of the Rectangle class"""
+        """Tests instantiation of the Square class"""
 
         sq1 = Square(5)
         self.assertEqual(sq1.id, 1)
         self.assertEqual(sq1.size, 5)
         self.assertEqual(sq1.x, 0)
         self.assertEqual(sq1.y, 0)
+
+        self.assertTrue(isinstance(sq1, Rectangle))
+        self.assertTrue(isinstance(sq1, Base))
 
         sq2 = Square(5, 7)
         self.assertEqual(sq2.id, 2)
@@ -59,7 +63,7 @@ class TestSquare(unittest.TestCase):
             sq5 = Square(5, 4, "7")
 
     def test_width(self):
-        """Tests the width of the rectangle"""
+        """Tests the width of the square"""
 
         sq = Square(10, 15)
         self.assertEqual(sq.width, 10)
