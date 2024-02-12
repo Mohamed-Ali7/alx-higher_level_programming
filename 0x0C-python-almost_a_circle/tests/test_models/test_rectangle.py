@@ -132,6 +132,9 @@ class TestRectangle(unittest.TestCase):
         r = Rectangle(height=3, width=7, id=15, y=3, x=4)
         self.assertEqual(r.__str__(), "[Rectangle] (15) 4/3 - 7/3")
 
+        r = Rectangle(5, 5)
+        self.assertEqual(r.__str__(), "[Rectangle] (2) 0/0 - 5/5")
+
     def test_update(self):
         """Tests Update function that updates the attributes of an instance"""
 
