@@ -101,12 +101,11 @@ class TestBase(unittest.TestCase):
                                                     r2.to_dictionary()])
         self.assertEqual(json_dictionary1, file_list1)
 
-        Rectangle.save_to_file([])
+        Rectangle.save_to_file(None)
         with open("Rectangle.json", "r") as file2:
             self.assertEqual(file2.read(), "[]")
 
-        Rectangle.save_to_file(None)
-        self.assertTrue(os.path.isfile("Rectangle.json"))
+        Rectangle.save_to_file([])
         with open("Rectangle.json", "r") as file3:
             self.assertEqual(file3.read(), "[]")
 
