@@ -102,16 +102,13 @@ class TestBase(unittest.TestCase):
         self.assertEqual(json_dictionary1, file_list1)
 
         Rectangle.save_to_file([])
-        self.assertTrue(os.path.isfile("Rectangle.json"))
         with open("Rectangle.json", "r") as file2:
-            file_list2 = file2.read()
-        self.assertEqual(file_list2, "[]")
+            self.assertEqual(file2.read(), "[]")
 
         Rectangle.save_to_file(None)
         self.assertTrue(os.path.isfile("Rectangle.json"))
         with open("Rectangle.json", "r") as file3:
-            file_list3 = file3.read()
-        self.assertEqual(file_list3, "[]")
+            self.assertEqual(file3.read(), "[]")
 
         sq1 = Square(10, 2, 8)
         sq2 = Square(2)
@@ -127,16 +124,12 @@ class TestBase(unittest.TestCase):
         self.assertEqual(json_dictionary2, file_list4)
 
         Square.save_to_file([])
-        self.assertTrue(os.path.isfile("Square.json"))
         with open("Square.json", "r") as file5:
-            file_list5 = file5.read()
-        self.assertEqual(file_list5, "[]")
+            self.assertEqual(file5.read(), "[]")
 
         Square.save_to_file(None)
-        self.assertTrue(os.path.isfile("Square.json"))
         with open("Square.json", "r") as file6:
-            file_list6 = file6.read()
-        self.assertEqual(file_list6, "[]")
+            self.assertEqual(file6.read(), "[]")
 
         with self.assertRaises(TypeError):
             Rectangle.save_to_file()
