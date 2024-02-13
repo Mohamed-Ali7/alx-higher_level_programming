@@ -122,11 +122,11 @@ class TestBase(unittest.TestCase):
                                                   sq2.to_dictionary()])
         self.assertEqual(json_dictionary2, file_list4)
 
-        Square.save_to_file([])
+        Square.save_to_file(None)
         with open("Square.json", "r") as file5:
             self.assertEqual(file5.read(), "[]")
 
-        Square.save_to_file(None)
+        Square.save_to_file([])
         with open("Square.json", "r") as file6:
             self.assertEqual(file6.read(), "[]")
 
