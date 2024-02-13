@@ -109,6 +109,10 @@ class TestBase(unittest.TestCase):
         with open("Rectangle.json", "r") as file3:
             self.assertEqual(file3.read(), "[]")
 
+        Square.save_to_file(None)
+        with open("Square.json", "r") as file6:
+            self.assertEqual(file6.read(), "[]")
+
         sq1 = Square(10, 2, 8)
         sq2 = Square(2)
         Square.save_to_file([sq1, sq2])
@@ -125,10 +129,6 @@ class TestBase(unittest.TestCase):
         Square.save_to_file([])
         with open("Square.json", "r") as file5:
             self.assertEqual(file5.read(), "[]")
-
-        Square.save_to_file(None)
-        with open("Square.json", "r") as file6:
-            self.assertEqual(file6.read(), "[]")
 
         with self.assertRaises(TypeError):
             Rectangle.save_to_file()
