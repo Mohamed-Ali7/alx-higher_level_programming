@@ -3,4 +3,4 @@
 
 -- The result column name should be average
 
-SELECT avg(score) as average from second_table;
+SELECT avg(score) as average FROM second_table;
