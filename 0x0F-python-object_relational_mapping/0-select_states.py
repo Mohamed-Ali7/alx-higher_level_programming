@@ -1,5 +1,10 @@
 #!/usr/bin/python3
 
+"""
+This module has a sql query to retrieve all states from hbtn_0d_usa database
+using MySQLdb module
+"""
+
 if __name__ == "__main__":
     import sys
     import MySQLdb
