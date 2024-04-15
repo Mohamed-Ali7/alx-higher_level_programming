@@ -1,10 +1,6 @@
 #!/usr/bin/python3
 
-"""
-contains the sqlalchemy code to
-prints the State object with the name passed as argument
-from the database hbtn_0e_6_usa
-"""
+"""adds the State object “Louisiana” to the database hbtn_0e_6_usa"""
 
 if __name__ == "__main__":
     import sys
@@ -27,5 +23,7 @@ if __name__ == "__main__":
 
     session.add(new_state)
     session.commit()
+
+    print(new_state.id)
 
     session.close()
