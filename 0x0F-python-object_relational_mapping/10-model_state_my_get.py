@@ -24,10 +24,10 @@ if __name__ == "__main__":
 
     session = Session()
 
-    state_id = session.query(State.id).filter_by(name=state_name).first()
+    state = session.query(State).filter_by(name=state_name).first()
 
-    if state_id:
-        print(state_id[0])
+    if state:
+        print(state.id)
     else:
         print("Not found")
 
