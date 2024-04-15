@@ -17,6 +17,9 @@ Base = declarative_base()
 
 
 class State(Base):
+
+    """This class represent the states table in hbtn_0e_6_usa daatabase"""
+
     __tablename__ = "states"
-    id = Column("id", Integer, primary_key=True)
-    name = Column("name", String(128), nullable=False)
+    id = Column(Integer, primary_key=True)
+    name = Column(String(128), nullable=False)
