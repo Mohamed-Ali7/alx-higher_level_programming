@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
     session = Session()
 
-    states = session.query(State).filter(State.name.like("%n%"))\
+    states = session.query(State).filter(State.name.like("%a%"))\
         .order_by(State.id)
 
     for state in states:
