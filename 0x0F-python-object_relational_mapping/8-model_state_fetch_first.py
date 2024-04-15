@@ -18,15 +18,14 @@ if __name__ == "__main__":
     engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'
                            .format(username, password, database))
 
-    Base.metadata.create_all(engine)
-
     Session = sessionmaker(bind=engine)
 
     session = Session()
 
-    state = session.query(State).first()
+    state = session.query(State).order_by(State.id).first()
 
     if state:
         print(f'{state.id}: {state.name}')
-
+    else:
+        print("Nothing")
     session.close()
