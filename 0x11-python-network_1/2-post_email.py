@@ -12,8 +12,7 @@ import sys
 if __name__ == "__main__":
     url = sys.argv[1]
     values = {"email": sys.argv[2]}
-    data = urllib.parse.urlencode(values).encode("utf-8")
+    data = urllib.parse.urlencode(values).encode("ascii")
 
-    with urllib.request.urlopen(url, data=data, method='POST') as response:
-        email = response.read().decode("utf-8")
-        print(f"Your email is: {email}")
+    with urllib.request.urlopen(url, data=data) as response:
+        print(response.read().decode("utf-8"))
