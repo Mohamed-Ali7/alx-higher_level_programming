@@ -12,5 +12,5 @@ request.get(argv[2], (err, res, body) => {
   if (err) {
     console.log(err);
   }
-  console.log(`Code: ${res.statusCode}`);
+  console.log(`code: ${res.statusCode}`);
 });
